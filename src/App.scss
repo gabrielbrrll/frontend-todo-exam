@@ -1,0 +1,623 @@
+$primary: #3E3E3E;
+$gray-600: #4B4B4B;
+$gray-400: #7E7E7E;
+$gray-300: #CDCDCD;
+$gray-250: #EDEDED;
+$gray-200: #F6F6F6;
+$gray-100: #D8D8D8;
+$green: #53FFC1;
+$blue: #53C1FF;
+$red: #FB8585;
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.eot');
+  src: url('./assets/fonts/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
+       url('./assets/fonts/Poppins-Regular.woff') format('woff'),
+       url('./assets/fonts/Poppins-Regular.ttf') format('truetype'),
+       url('./assets/fonts/Poppins-Regular.svg#Poppins-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Medium.eot');
+  src: url('./assets/fonts/Poppins-Medium.eot?#iefix') format('embedded-opentype'),
+       url('./assets/fonts/Poppins-Medium.woff') format('woff'),
+       url('./assets/fonts/Poppins-Medium.ttf') format('truetype'),
+       url('./assets/fonts/Poppins-Medium.svg#Poppins-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+%checkbox-container {
+  border: 1px solid $gray-100;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%checkbox {
+  height: 16px;
+  width: 16px;
+  border-radius: 100% !important;
+  cursor: pointer;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+%checkbox-content {
+  position: absolute;
+  content: "\0021";
+  top: -1px;
+  left: 6px;
+}
+
+%input {
+  font-size: 20px;
+  border: unset;
+  outline: none;
+  border-bottom: 1px solid $gray-250;
+  width: auto;
+  padding: 0.4em 0;
+  color: $primary;
+  width: 100%;
+}
+
+::placeholder {
+  color: $gray-300;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: $primary;
+}
+
+.flex {
+  display: flex
+}
+
+.justify-between {
+  justify-content: space-between
+}
+
+.items-center {
+  align-items: center
+}
+
+.w-full {
+  width: 100%;
+}
+
+.ErrorPage {
+  padding: 5em 8em;
+}
+
+.btn {
+  display: block;
+  cursor: pointer;
+  padding: 0.4em 1em;
+
+  &:hover {
+    border-radius: 10px;
+    background: white;
+  }
+
+  .btn__label {
+    font-size: 16px;
+    margin-left: 0.8em;
+  }
+
+  .badge {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: $gray-300;
+  }
+
+  .badge--green {
+    background: $green;
+  }
+
+  .badge--blue {
+    background: $blue;
+  }
+
+  .badge--red {
+    background: $red;
+  }
+
+  .Todo__count {
+    color: $gray-100;
+  }
+}
+
+.btn--primary {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: $primary;
+
+  &:hover {
+    background: $gray-200
+  }
+}
+
+.btn--unstyled {
+  background: transparent;
+  border: none;
+  outline: none;
+  display: flex;
+}
+
+.btn--active {
+  border-radius: 10px;
+  background: white;
+}
+
+.btn--small {
+  font-size: 14px;
+}
+
+.btn--danger {
+  color: $red;
+}
+
+.btn--disabled {
+  border-radius: 10px;
+  background: $gray-200;
+  color: $gray-400;
+  cursor: not-allowed;
+}
+
+.btn--blue {
+  color: white;
+  background: $blue;
+  border-radius: 10px;
+
+  &:hover {
+    background: $green
+  }
+}
+
+.btn--outline {
+  border: 1px solid $gray-300;
+  border-radius: 10px;
+
+  &:hover {
+    background: $blue;
+    border: 1px solid $blue;
+    color: white;
+  }
+}
+
+.btn--gray {
+  font-size: 12px;
+  color: $gray-300;
+}
+
+.Login__page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Login__title {
+    color: $gray-600;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
+  .Login__label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-size: 16px;
+
+    &:last-of-type {
+      margin-top: 1em;
+    }
+  }
+
+  .Login__input {
+    height: 30px;
+    width: 200px !important;
+  }
+
+  .btn {
+    margin-top: 2em;
+  }
+}
+
+.Todo_container {
+  display: flex;
+  height: 100vh;
+
+  .Todo__nav {
+    z-index: 1;
+    position: fixed;
+    width: 25%;
+    height: 100vh;
+    background: $gray-200;
+    padding: 3em 2.5em 0 2.5em;
+    overflow-y: auto;
+
+    .Todo__title {
+      font-size: 26px;
+      font-weight: 500
+    }
+
+    .Todo__groups {
+      margin-top: 3em;
+
+      
+      .Todo__new-groups {
+        margin-top: 2.6em;
+
+        .Todo__tag-title {
+          font-size: 20px;
+          margin-bottom: 0.2em;
+          font-weight: 500;
+          color: $gray-600
+        }
+      }
+    }
+  }
+
+  .Todo__fix {
+    width: 25%;
+    height: 100vh;
+  }
+
+  .Todo__main {
+    width: 75%;
+    margin: 0 auto;
+    padding: 8em 10em;
+
+    .Todo__toolbar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3em;
+
+      .btn__mobile-menu {
+        display: none;
+      }
+
+      .Todo__filter {
+        font-weight: 500;
+        font-size: 26px;
+        color: $primary;
+        text-transform: capitalize;
+      }
+
+      .Todo__counter {
+        margin-left: 1em;
+        color: $gray-300;
+      }
+    }
+  }
+
+  .Todo__item {
+    margin-bottom: 1.4em;
+    position: relative;
+    cursor: pointer;
+
+    .Todo__item-priority {
+      margin-left: 0.6em;
+ 
+      .Todo__checkbox {
+        @extend %checkbox-container;
+
+        input[type="checkbox"] {
+          @extend %checkbox;
+    
+          &::before {
+            @extend %checkbox-content;
+            color: $gray-100;
+          }
+  
+          &:hover {
+            color: $gray-100;
+            background: $gray-100;
+  
+            &::before {
+              @extend %checkbox-content;
+              color: white;
+            }
+          }
+    
+          &:checked {
+            padding: 4px;
+            background: $red;
+  
+            &::after {
+              @extend %checkbox-content;
+              color: white;
+            }
+          }
+        }
+        
+        ~ .Todo__priority-label {
+          margin-left: 0.6em;
+          font-size: 12px;
+          color: $gray-400;
+        }
+      }
+    }
+
+    .Todo__priority--left {
+      margin-left: 0 !important;
+    }
+
+    .Todo__item-toggle {
+      margin-top: 0.8em;
+      margin-right: 0.8em;
+
+      .Todo__checkbox {
+        @extend %checkbox-container;
+
+        input[type="checkbox"] {
+          @extend %checkbox;
+    
+          &::before {
+            @extend %checkbox-content;
+            left: 3px;
+            content: "";
+            color: $gray-100;
+          }
+  
+          &:hover {
+            color: $gray-100;
+            background: $green;
+  
+            &::before {
+              @extend %checkbox-content;
+              left: 3px;
+              content: "\2713";
+              color: white;
+            }
+          }
+    
+          &:checked {
+            padding: 4px;
+            background: $gray-100;
+  
+            &::after {
+              @extend %checkbox-content;
+              left: 3px;
+              content: "\2713";
+              color: white;
+            }
+          }
+        }
+      }
+    }
+
+    .Todo__input--active {
+      @extend %input;
+      text-overflow: ellipsis;
+
+      &.Todo__content {
+        padding-top: 0;
+      }
+
+      &.Todo__description {
+        font-size: 14px;
+        padding: 1em 0;
+        color: $gray-600;
+        resize: none;
+      }
+
+      &.Todo__tag {
+        font-size: 12px;
+        color: $gray-600;
+        width: auto;
+      }
+    }
+
+    .Todo__input--inactive {
+      @extend %input;
+      border: none;
+      padding-bottom: 0.2em;
+      cursor: pointer;
+
+      &.Todo__description {
+        font-size: 12px;
+        padding: 0;
+        color: $gray-400;
+        resize: none;
+        white-space: normal;
+      }
+
+      &.Todo__tag {
+        font-size: 14px;
+        color: $gray-400;
+        padding: 0.2em 0.6em;
+        background: $gray-200;
+        width: auto;
+        border-radius: 5px;
+      }
+
+      &.Todo__input--strikethrough {
+        text-decoration: line-through;
+        color: $gray-300;
+      }
+    }
+
+    .Todo__controls {
+      margin-top: 1.5em;
+
+      button {
+        
+        &:first-of-type {
+          margin-right: 0.5em;
+        }
+      }
+    }
+
+    .Todo__item-controls {
+      position: absolute;
+      right: 10px;
+      top: 0px;
+      background: white;
+    }
+
+    .Todo___update-controls {
+      margin-top: 1.6em;
+
+      button {
+        
+        &:first-of-type {
+          margin-right: 0.5em;
+        }
+      }
+    }
+  }
+
+  .Todo__add-control {
+    margin-top: 4em;
+  }
+
+  .Todo__empty {
+    font-style: italic;
+    color: $gray-300;
+    margin-bottom: 2em;
+  }
+}
+
+
+// Media Queries
+
+// ipad basis
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    .Todo__nav {
+      padding: 2em !important;
+      width: 30% !important;
+    }
+
+    .Todo__main {
+      padding: 5em 8em !important;
+    }
+}
+
+// iphone x basis
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+    .Todo__nav {
+      position: fixed !important;
+      height: 100vh !important;
+      width: 70% !important;
+      overflow-y: auto !important;
+    }
+
+    .Todo__nav--hidden {
+      display: none !important;
+    }
+
+    .Todo__fix {
+      display: none !important;
+    }
+
+    .Todo__main {
+      padding: 2em 0 !important;
+
+      .Todo__toolbar {
+
+        .Todo__filter {
+          font-size: 18px !important;
+        }
+
+        .Todo__counter {
+          font-size: 12px !important;
+          min-width: 50px !important;
+        }
+
+        .btn__mobile-menu {
+          display: block;
+          margin-right: 0.5em;
+        }
+
+        .btn {
+          font-size: 12px !important;
+        }
+      }
+    }
+
+    .Todo__item {
+
+      .Todo__input--active,
+      .Todo__input--inactive {
+        font-size: 18px !important;
+
+        &.Todo__description {
+          font-size: 14px !important;
+        }
+  
+        &.Todo__tag {
+          font-size: 12px !important;
+        }
+      }
+
+      .Todo__item-controls {
+        font-size: 12px !important;
+        top: 5px !important;
+      }
+    }
+
+}
+
+/* portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) 
+  and (orientation: portrait) { 
+
+    .Todo__toolbar {
+
+      .btn__mobile-menu {
+        display: block !important;
+      }
+    }
+}
+
+/* landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) 
+  and (orientation: landscape) { 
+
+    .Todo__nav {
+      width: 30% !important;
+      z-index: 1;
+      display: block !important;
+    }
+
+    .Todo__fix {
+      margin-right: 8em;
+      width: 30% !important;
+      display: block !important;
+    }
+
+    .Todo__main {
+      margin-right: 5em !important;
+    }
+}
+

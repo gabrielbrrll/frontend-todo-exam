@@ -7,24 +7,34 @@ const mockToken = 'testabc.xyz.ahk'
 class ApiFrontend extends IAPI {
     async signIn(username: string, password: string): Promise<string>{
         if (username === 'firstUser' && password === 'example') {
+            console.log("NCIE")
             return Promise.resolve(mockToken)
         }
 
         return Promise.reject('Incorrect username/password')
     }
 
-    async createTodo(content: string): Promise<Todo> {
+    async createTodo(content: string, description?: string, label?: string, isPriority?: boolean, status?: TodoStatus): Promise<Todo> {
         return Promise.resolve({
-            content: content,
+            content,
+            description,
+            label: label?.trim().toLowerCase() || "untagged",
+            isPriority,
+            status,
             created_date: new Date().toISOString(),
-            status: TodoStatus.ACTIVE,
             id: shortid(),
             user_id: 'firstUser'
         } as Todo);
     }
 
+    async saveTodos(todos: Array<Todo>): Promise<Array<Todo>>{
+        localStorage.setItem('todos', JSON.stringify(todos))
+        return Promise.resolve(todos);
+    }
+
     async getTodos(): Promise<Todo[]>{
-        return []
+        const todos = JSON.parse(localStorage.getItem('todos') || '[]')
+        return Promise.resolve(todos)
     }
 }
 

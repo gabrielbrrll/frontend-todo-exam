@@ -2,10 +2,11 @@ import React from 'react';
 
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-import SignInPage from './SignInPage';
-import ToDoPage from './ToDoPage';
+import SignInPage from 'pages/login';
+import ToDoPage from 'pages/todos';
+import FourOhFour from 'pages/fourOhFour';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={SignInPage}/>
           <Route path="/todo" component={ToDoPage}/>
+          <Route path="*" component={FourOhFour} />
         </Switch>
       </BrowserRouter>
     </main>

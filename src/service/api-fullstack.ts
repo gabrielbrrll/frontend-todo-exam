@@ -23,6 +23,10 @@ class ApiFullstack extends IAPI {
 
         return resp.data.data;
     }
+
+    async saveTodos(todos: Todo[]): Promise<Array<Todo>> {
+        return todos
+    }
 }
 
 

@@ -1,12 +1,14 @@
-import {Todo, TodoStatus} from '../models/todo';
+import {Todo, TodoStatus} from 'models/todo';
+import { AppActions } from './types';
 import {
-  AppActions,
   CREATE_TODO,
   DELETE_ALL_TODOS,
   DELETE_TODO,
+  UPDATE_TODO,
+  UPDATE_TODO_STATUS,
   TOGGLE_ALL_TODOS,
-  UPDATE_TODO_STATUS
-} from './actions';
+  SET_TODO,
+} from './actions'
 
 export interface AppState {
   todos: Array<Todo>
@@ -18,27 +20,48 @@ export const initialState: AppState = {
 
 function reducer(state: AppState, action: AppActions): AppState {
   switch (action.type) {
-    case CREATE_TODO:
-      state.todos.push(action.payload);
+    case SET_TODO:
       return {
-        ...state
-      };
+        ...state,
+        todos: action.payload
+      }
+    case CREATE_TODO:
+      return {
+        ...state,
+        todos: [...state.todos, action.payload]
+      }
 
-    case UPDATE_TODO_STATUS:
-      const index2 = state.todos.findIndex((todo) => todo.id === action.payload.todoId);
-      state.todos[index2].status = action.payload.checked ? TodoStatus.COMPLETED : TodoStatus.ACTIVE;
+    case DELETE_TODO:
+      const filteredTodos = state.todos.filter((todo) => todo.id !== action.payload);
+      return {
+        ...state,
+        todos: filteredTodos
+      }
+
+    case UPDATE_TODO:
+      const todoIdx = state.todos.findIndex((todo) => todo.id === action.payload.id);
+      state.todos[todoIdx] = action.payload;
 
       return {
         ...state,
         todos: state.todos
       }
 
+    case UPDATE_TODO_STATUS:
+      const idx = state.todos.findIndex((todo) => todo.id === action.payload.todoId);
+      state.todos[idx].status = action.payload.checked ? TodoStatus.COMPLETED : TodoStatus.ACTIVE;
+      return {
+        ...state,
+        todos: state.todos
+      }
+
     case TOGGLE_ALL_TODOS:
-      const tempTodos = state.todos.map((e)=>{
-        return {
+      const tempTodos = state.todos.map((e) => {
+        const updatingTodoIdx = action.payload.todos.findIndex((todo) => e.id === todo.id)
+        return updatingTodoIdx >= 0 ? ({
           ...e,
-          status: action.payload ? TodoStatus.COMPLETED : TodoStatus.ACTIVE
-        }
+          status: action.payload.checked ? TodoStatus.COMPLETED : TodoStatus.ACTIVE
+        }) : e
       })
 
       return {
@@ -46,18 +69,12 @@ function reducer(state: AppState, action: AppActions): AppState {
         todos: tempTodos
       }
 
-    case DELETE_TODO:
-      const index1 = state.todos.findIndex((todo) => todo.id === action.payload);
-      state.todos.splice(index1, 1);
-
-      return {
-        ...state,
-        todos: state.todos
-      }
     case DELETE_ALL_TODOS:
+      const deletingIds = action.payload.map(todo => todo.id)
+      const updatedTodos = state.todos.filter(todo => !deletingIds.includes(todo.id))
       return {
         ...state,
-        todos: []
+        todos: updatedTodos
       }
     default:
       return state;
