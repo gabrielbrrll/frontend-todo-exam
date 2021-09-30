@@ -35,7 +35,7 @@ const TodoGroups = ({
   return (
       <div className="Todo__toolbar">
           <div className="flex items-center" >
-            <button className="btn btn--unstyled btn__mobile-menu" onClick={onMenuClick}>
+            <button className="btn btn--unstyled btn__mobile-menu" aria-label="menu" onClick={onMenuClick}>
               <img src={MENU_ICON} alt="menu"  />
             </button>
             <div className="Todo__filter">{activeFilter.toLowerCase()}</div>

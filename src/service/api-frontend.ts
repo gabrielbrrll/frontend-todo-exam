@@ -7,7 +7,6 @@ const mockToken = 'testabc.xyz.ahk'
 class ApiFrontend extends IAPI {
     async signIn(username: string, password: string): Promise<string>{
         if (username === 'firstUser' && password === 'example') {
-            console.log("NCIE")
             return Promise.resolve(mockToken)
         }
 

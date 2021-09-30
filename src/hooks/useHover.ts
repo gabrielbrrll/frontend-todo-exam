@@ -9,7 +9,6 @@ function useHover<T>() {
   useEffect(
     () => {
       const node: any = ref.current;
-      console.log(node, 'node')
       if (node) {
         node.addEventListener("mouseover", handleMouseOver);
         node.addEventListener("mouseleave", handleMouseLeave);

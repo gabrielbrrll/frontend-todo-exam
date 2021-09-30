@@ -73,7 +73,7 @@ describe('Todo Toolbar tests', () => {
     />
   )
 
-  const menuButton = screen.queryByRole("button")
+  const menuButton = screen.queryByRole("button", { name: "menu" })
   expect(menuButton).toHaveClass('btn btn--unstyled btn__mobile-menu')
  })
 
