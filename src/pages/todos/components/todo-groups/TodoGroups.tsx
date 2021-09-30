@@ -72,7 +72,7 @@ const TodoGroups = ({
     }, 0)
 
     return ({
-      key: label?.toUpperCase(),
+      key: label,
       label: label,
       color: "gray",
       count,
